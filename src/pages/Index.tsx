@@ -109,34 +109,119 @@ const PHASES = [
   { name: "МАСТЕРСТВО", weeks: "10–12", icon: "Trophy", desc: "Дебют, расчёт, турниры" },
 ];
 
-const TRAINERS = [
+const TRAINER_CATEGORIES = [
   {
-    name: "Lichess",
-    url: "https://lichess.org",
-    desc: "Бесплатная платформа: тактика, анализ, турниры, задачи, обучение",
-    icon: "♞",
-    features: ["Задачи на тактику", "Анализ партий Stockfish", "Тренировка дебютов", "Эндшпиль практика"]
+    category: "Основные платформы",
+    items: [
+      {
+        name: "Lichess",
+        url: "https://lichess.org",
+        desc: "Открытая бесплатная платформа — тактика, анализ Stockfish, дебюты, эндшпили",
+        icon: "♞",
+        free: true,
+        tags: ["Тактика", "Анализ", "Дебюты", "Эндшпиль", "Турниры"]
+      },
+      {
+        name: "Chess.com",
+        url: "https://chess.com",
+        desc: "Крупнейшая платформа мира — уроки, задачи, видео от гроссмейстеров",
+        icon: "♜",
+        free: false,
+        tags: ["Уроки", "Задачи", "Видео GM", "Игра онлайн"]
+      },
+    ]
   },
   {
-    name: "Chess.com",
-    url: "https://chess.com",
-    desc: "Крупнейшая шахматная платформа с уроками и видеокурсами",
-    icon: "♜",
-    features: ["Интерактивные уроки", "Тактические задачи", "Игра с компьютером", "Видеоуроки GM"]
+    category: "Тактика и задачи",
+    items: [
+      {
+        name: "ChessTempo",
+        url: "https://chesstempo.com",
+        desc: "Рейтинговые тактические задачи с базой эндшпилей и дебютов",
+        icon: "♛",
+        free: true,
+        tags: ["Рейтинг-задачи", "Эндшпиль БД", "Дебют БД"]
+      },
+      {
+        name: "Puzzle Rush",
+        url: "https://www.chess.com/puzzles/rush",
+        desc: "Скоростное решение задач — режим на время или на выживание",
+        icon: "⚡",
+        free: false,
+        tags: ["Блиц-тактика", "На время", "На выживание"]
+      },
+      {
+        name: "Tactics Frenzy",
+        url: "https://www.chessable.com/course/tactics-frenzy/",
+        desc: "Интенсивный тренинг тактики на платформе Chessable с методом повторений",
+        icon: "🎯",
+        free: false,
+        tags: ["Повторения", "Chessable", "Интенсив"]
+      },
+    ]
   },
   {
-    name: "ChessTempo",
-    url: "https://chesstempo.com",
-    desc: "Специализированный тренажёр тактики и эндшпиля с рейтингом",
-    icon: "♛",
-    features: ["Рейтинговая тактика", "База дебютов", "Эндшпильная БД", "Отслеживание прогресса"]
+    category: "Дебюты и стратегия",
+    items: [
+      {
+        name: "Chessable",
+        url: "https://www.chessable.com",
+        desc: "Интервальные повторения для запоминания дебютных линий по науке",
+        icon: "📖",
+        free: false,
+        tags: ["Дебюты", "Интервал. повторения", "Книги GM"]
+      },
+      {
+        name: "Opening Tree (Lichess)",
+        url: "https://lichess.org/opening",
+        desc: "Интерактивное дерево дебютов с базой миллионов партий",
+        icon: "🌳",
+        free: true,
+        tags: ["Дерево дебютов", "База партий", "Статистика ходов"]
+      },
+    ]
   },
   {
-    name: "Chess King",
-    url: "https://chess-king.com",
-    desc: "Мобильное обучение шахматам от гроссмейстера Каспарова",
-    icon: "♚",
-    features: ["Курс Каспарова", "Интерактивные уроки", "Задачи по уровням", "Офлайн режим"]
+    category: "Эндшпиль и анализ",
+    items: [
+      {
+        name: "Lichess Practice",
+        url: "https://lichess.org/practice",
+        desc: "Структурированные уроки по эндшпилю с интерактивными упражнениями",
+        icon: "♝",
+        free: true,
+        tags: ["Пешечный эндшпиль", "Ладейный", "Урок + практика"]
+      },
+      {
+        name: "Syzygy Tablebase",
+        url: "https://syzygy-tables.info",
+        desc: "Идеальная база данных эндшпилей до 7 фигур — точный результат любой позиции",
+        icon: "🔬",
+        free: true,
+        tags: ["7-фигурная БД", "Идеальная игра", "Анализ"]
+      },
+    ]
+  },
+  {
+    category: "Видео и обучение",
+    items: [
+      {
+        name: "Chess King",
+        url: "https://chess-king.com",
+        desc: "Курс Каспарова: мобильное обучение с задачами по уровням",
+        icon: "♚",
+        free: false,
+        tags: ["Курс Каспарова", "Мобильный", "По уровням"]
+      },
+      {
+        name: "YouTube — GothamChess",
+        url: "https://www.youtube.com/@GothamChess",
+        desc: "Леви Розман — разборы партий, дебютов и тактики для всех уровней",
+        icon: "▶",
+        free: true,
+        tags: ["Видео", "Разборы", "Дебюты"]
+      },
+    ]
   },
 ];
 
@@ -782,29 +867,89 @@ export default function Index() {
       {/* ===== ТРЕНАЖЁРЫ ===== */}
       <section id="trainers" className="py-20 sm:py-28" style={{ background: "rgba(255,255,255,0.018)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <div className="section-tag mb-4">Онлайн-тренажёры</div>
-            <h2 className="font-oswald font-bold text-4xl sm:text-5xl text-white">ПРАКТИКА В СЕТИ</h2>
-            <p className="font-ibm mt-3" style={{ color: "rgba(255,255,255,0.45)" }}>Лучшие бесплатные платформы для тренировки шахмат</p>
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <div>
+              <div className="section-tag mb-3">Онлайн-тренажёры</div>
+              <h2 className="font-oswald font-bold text-4xl sm:text-5xl text-white">ПРАКТИКА В СЕТИ</h2>
+            </div>
+            <p className="text-sm font-ibm" style={{ color: "rgba(255,255,255,0.35)" }}>
+              10 платформ · бесплатные и платные
+            </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-5 mb-16">
-            {TRAINERS.map((t, i) => (
-              <a key={i} href={t.url} target="_blank" rel="noopener noreferrer" className="card-chess p-6 block group">
-                <div className="text-5xl mb-4">{t.icon}</div>
-                <h3 className="font-oswald font-bold text-xl text-white mb-2 group-hover:text-orange-400 transition-colors">{t.name}</h3>
-                <p className="text-xs font-ibm mb-4" style={{ color: "rgba(255,255,255,0.45)" }}>{t.desc}</p>
-                <ul className="space-y-1 mb-4">
-                  {t.features.map((f, j) => (
-                    <li key={j} className="flex items-center gap-2 text-xs font-ibm" style={{ color: "rgba(255,255,255,0.5)" }}>
-                      <span style={{ color: "var(--chess-orange)" }}>→</span>{f}
-                    </li>
-                  ))}
-                </ul>
-                <span className="inline-flex items-center gap-1 text-xs font-oswald uppercase tracking-wider" style={{ color: "var(--chess-orange)" }}>
-                  Открыть <Icon name="ExternalLink" size={11} />
-                </span>
-              </a>
+          <div className="space-y-0 mb-16" style={{ borderTop: "1px solid var(--chess-border)" }}>
+            {TRAINER_CATEGORIES.map((cat, ci) => (
+              <div key={ci}>
+                {/* Категория */}
+                <div className="flex items-center gap-4 py-3 px-0" style={{ borderBottom: "1px solid var(--chess-border)" }}>
+                  <span className="text-xs font-oswald uppercase tracking-[0.25em]" style={{ color: "rgba(255,107,26,0.7)", minWidth: "180px" }}>
+                    {cat.category}
+                  </span>
+                  <div className="hidden sm:block h-px flex-1" style={{ background: "var(--chess-border)" }} />
+                </div>
+                {/* Строки платформ */}
+                {cat.items.map((t, ti) => (
+                  <a
+                    key={ti}
+                    href={t.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-4 sm:gap-6 py-4 px-0 transition-all"
+                    style={{
+                      borderBottom: "1px solid var(--chess-border)",
+                      textDecoration: "none"
+                    }}
+                  >
+                    {/* Иконка + название */}
+                    <div className="flex items-center gap-3 w-44 shrink-0">
+                      <span className="text-xl w-7 text-center select-none">{t.icon}</span>
+                      <span
+                        className="font-oswald font-semibold text-base transition-colors"
+                        style={{ color: "white" }}
+                      >
+                        {t.name}
+                      </span>
+                    </div>
+
+                    {/* Описание */}
+                    <p className="hidden sm:block flex-1 text-sm font-ibm" style={{ color: "rgba(255,255,255,0.45)", lineHeight: 1.5 }}>
+                      {t.desc}
+                    </p>
+
+                    {/* Теги */}
+                    <div className="hidden md:flex items-center gap-1.5 flex-wrap justify-end" style={{ maxWidth: "280px" }}>
+                      {t.tags.slice(0, 3).map((tag, ti2) => (
+                        <span
+                          key={ti2}
+                          className="text-xs font-ibm px-2 py-0.5"
+                          style={{
+                            background: "rgba(255,255,255,0.04)",
+                            color: "rgba(255,255,255,0.35)",
+                            border: "1px solid rgba(255,255,255,0.08)"
+                          }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Бесплатно / платно */}
+                    <div className="shrink-0 w-20 text-right">
+                      <span
+                        className="text-xs font-oswald uppercase tracking-wider"
+                        style={{ color: t.free ? "rgba(100,200,100,0.7)" : "rgba(255,255,255,0.2)" }}
+                      >
+                        {t.free ? "Бесплатно" : "Платно"}
+                      </span>
+                    </div>
+
+                    {/* Стрелка */}
+                    <div className="shrink-0 transition-transform group-hover:translate-x-1" style={{ color: "rgba(255,107,26,0.5)" }}>
+                      <Icon name="ArrowRight" size={16} />
+                    </div>
+                  </a>
+                ))}
+              </div>
             ))}
           </div>
 
