@@ -4,89 +4,53 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 97%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 97%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 97%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 25 100% 55%;
+    --primary-foreground: 0 0% 4%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 97%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 25 100% 55%;
+    --accent-foreground: 0 0% 4%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 97%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 25 100% 55%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
-    --sidebar-background: 0 0% 98%;
+    --sidebar-background: 0 0% 4%;
+    --sidebar-foreground: 0 0% 97%;
+    --sidebar-primary: 25 100% 55%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 97%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 25 100% 55%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Chess custom colors */
+    --chess-orange: #ff6b1a;
+    --chess-orange-glow: rgba(255, 107, 26, 0.3);
+    --chess-dark: #0a0a0a;
+    --chess-card: #111111;
+    --chess-border: #2a2a2a;
+    --chess-light-square: #f0d9b5;
+    --chess-dark-square: #b58863;
   }
 }
 
@@ -95,7 +59,182 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
+    font-family: "IBM Plex Sans", sans-serif;
+    background-color: var(--chess-dark);
+    background-image:
+      radial-gradient(
+        ellipse 80% 60% at 50% -20%,
+        rgba(255, 107, 26, 0.08) 0%,
+        transparent 70%
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 60px,
+        rgba(255, 255, 255, 0.015) 60px,
+        rgba(255, 255, 255, 0.015) 61px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 60px,
+        rgba(255, 255, 255, 0.015) 60px,
+        rgba(255, 255, 255, 0.015) 61px
+      );
+  }
+}
+
+@layer components {
+  .font-oswald {
+    font-family: "Oswald", sans-serif;
+  }
+  .font-rubik {
+    font-family: "Rubik", sans-serif;
+  }
+  .font-ibm {
+    font-family: "IBM Plex Sans", sans-serif;
+  }
+
+  .chess-btn-primary {
+    @apply inline-flex items-center gap-2 px-8 py-4 font-oswald font-semibold text-lg uppercase tracking-widest;
+    background: var(--chess-orange);
+    color: #000;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  .chess-btn-primary:hover {
+    background: #ff8c42;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px var(--chess-orange-glow);
+  }
+
+  .chess-btn-outline {
+    @apply inline-flex items-center gap-2 px-8 py-4 font-oswald font-semibold text-lg uppercase tracking-widest;
+    border: 2px solid var(--chess-orange);
+    color: var(--chess-orange);
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    background: transparent;
+  }
+  .chess-btn-outline:hover {
+    background: var(--chess-orange);
+    color: #000;
+    transform: translateY(-2px);
+  }
+
+  .section-tag {
+    @apply inline-block px-4 py-1 text-xs font-oswald font-semibold uppercase tracking-[0.3em];
+    color: var(--chess-orange);
+    border: 1px solid var(--chess-orange);
+    background: rgba(255, 107, 26, 0.08);
+  }
+
+  .card-chess {
+    background: var(--chess-card);
+    border: 1px solid var(--chess-border);
+    transition: all 0.3s ease;
+  }
+  .card-chess:hover {
+    border-color: var(--chess-orange);
+    box-shadow: 0 0 30px var(--chess-orange-glow);
+    transform: translateY(-3px);
+  }
+
+  .week-badge {
+    @apply flex items-center justify-center w-12 h-12 font-oswald font-bold text-xl;
+    background: var(--chess-orange);
+    color: #000;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+
+  .nav-link {
+    @apply font-oswald uppercase tracking-widest text-sm transition-colors duration-200;
+    color: rgba(255, 255, 255, 0.65);
+  }
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--chess-orange);
+  }
+
+  .progress-bar {
+    height: 6px;
+    background: var(--chess-border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--chess-orange), #ff8c42);
+    border-radius: 3px;
+    transition: width 1s ease;
+  }
+
+  .chess-square-light {
+    background-color: var(--chess-light-square);
+  }
+  .chess-square-dark {
+    background-color: var(--chess-dark-square);
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes glowPulse {
+    0%,
+    100% {
+      box-shadow: 0 0 20px var(--chess-orange-glow);
+    }
+    50% {
+      box-shadow: 0 0 50px rgba(255, 107, 26, 0.5);
+    }
+  }
+  @keyframes floatPiece {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(-5deg);
+    }
+    50% {
+      transform: translateY(-15px) rotate(5deg);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.7s ease forwards;
+  }
+  .animate-glow {
+    animation: glowPulse 2s ease-in-out infinite;
+  }
+  .animate-float {
+    animation: floatPiece 4s ease-in-out infinite;
+  }
+  .delay-100 {
+    animation-delay: 0.1s;
+  }
+  .delay-200 {
+    animation-delay: 0.2s;
+  }
+  .delay-300 {
+    animation-delay: 0.3s;
+  }
+  .delay-400 {
+    animation-delay: 0.4s;
+  }
+  .delay-500 {
+    animation-delay: 0.5s;
   }
 }
